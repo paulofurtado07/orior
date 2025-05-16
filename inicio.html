@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SerraExplore - Início</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Nunito', sans-serif;
+    }
+
+    body {
+      background-color: #fefefe;
+      color: #333;
+    }
+
+    header {
+      background-color: #2b3a42;
+      padding: 1.5rem;
+      text-align: center;
+      color: #fff;
+    }
+
+    .inicio-container {
+      padding: 4rem 2rem;
+      background-image: linear-gradient(to bottom right, #e8f0f2, #ffffff);
+      text-align: center;
+    }
+
+    .inicio-container h1 {
+      font-size: 2.8rem;
+      color: #2b3a42;
+      margin-bottom: 1rem;
+    }
+
+    .inicio-container p {
+      font-size: 1.2rem;
+      max-width: 800px;
+      margin: 0 auto 1.5rem;
+      line-height: 1.7;
+      color: #555;
+    }
+
+    .btn-explorar {
+      background-color: #2b3a42;
+      color: #fff;
+      padding: 0.9rem 2rem;
+      border: none;
+      border-radius: 6px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .btn-explorar:hover {
+      background-color: #1e2c33;
+    }
+
+    .imagem-banner {
+      margin-top: 3rem;
+      width: 100%;
+      max-height: 450px;
+      object-fit: cover;
+      border-radius: 10px;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h2>SerraExplore</h2>
+  </header>
+
+  <section class="inicio-container">
+    <h1>Bem-vindo à SerraExplore</h1>
+    <p>A SerraExplore é uma plataforma que conecta você a experiências inesquecíveis na Serra Catarinense. Descubra roteiros únicos que unem natureza, cultura e gastronomia local.</p>
+    <p>Explore Lages e região de forma planejada, interativa e autêntica, com informações atualizadas, parceiros locais e integração entre os melhores atrativos da serra.</p>
+    <button class="btn-explorar" onclick="irParaRoteiros()">Ver Roteiros</button>
+    <img class="imagem-banner" src="https://visiteaserrasc.com.br/painel/img/vserrasc_site/20_banners_14388.jpg" alt="Banner Serra Catarinense">
+  </section>
+
+  <script>
+    function irParaRoteiros() {
+      window.location.href = "roteiros.html";
+    }
+  </script>
+
+</body>
+</html>
