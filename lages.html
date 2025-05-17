@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SerraExplore - Roteiros</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Nunito', sans-serif;
+    }
+
+    body {
+      background-color: #f9f9f9;
+      color: #333;
+    }
+
+    header {
+      background-color: #2b3a42;
+      padding: 1rem;
+      text-align: center;
+      color: #fff;
+    }
+
+    main {
+      padding: 4rem 2rem;
+    }
+
+    main h1 {
+      font-size: 2.5rem;
+      color: #2b3a42;
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+
+    main p.intro {
+      font-size: 1.2rem;
+      color: #555;
+      max-width: 700px;
+      margin: 0 auto 2rem auto;
+      text-align: center;
+    }
+
+    .itinerary {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .card-link {
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+
+    .day-card {
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.3s ease;
+    }
+
+    .day-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .day-card img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+    }
+
+    .day-content {
+      padding: 1rem;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .day-content h3 {
+      font-size: 1.4rem;
+      color: #2b3a42;
+      margin-bottom: 0.5rem;
+    }
+
+    .day-content p {
+      font-size: 1rem;
+      color: #555;
+      flex-grow: 1;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem 1rem;
+      color: #777;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h2><strong>serraExplore</strong></h2>
+  </header>
+
+  <main>
+    <h1>Explore Lages</h1>
+    <p class="intro">Escolha entre roteiros gastronômicos, culturais, naturais e muito mais. Descubra o que Lages tem de melhor a oferecer!</p>
+
+    <div class="itinerary">
+
+      <a href="gastronomia.html" class="card-link">
+        <div class="day-card">
+          <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/15/bc/c5/b9/sc.jpg?w=600&h=400&s=1" alt="Roteiro Gastronômico">
+          <div class="day-content">
+            <h3>🍽️ Roteiro Gastronômico</h3>
+          </div>
+        </div>
+      </a>
+
+      <a href="festivo.html" class="card-link">
+        <div class="day-card">
+          <img src="https://i0.wp.com/saojoaquimonline.com.br/wp-content/uploads/2023/05/FESTA-NACIONAL-DO-PINHAO-2023-GERAL-1.jpg?fit=1280%2C795" alt="Roteiro Festivo">
+          <div class="day-content">
+            <h3>🎉 Roteiro Festivo</h3>
+          </div>
+        </div>
+      </a>
+
+      <a href="cultura.html" class="card-link">
+        <div class="day-card">
+          <img src="https://s2.glbimg.com/IkIHO_1Vv0JyCku4aS5LMhPLvDE=/1200x630/filters:max_age(3600)/s01.video.glbimg.com/deo/vi/88/75/5227588" alt="Roteiro Cultural">
+          <div class="day-content">
+            <h3>🏛️ Roteiro Cultural</h3>
+          </div>
+        </div>
+      </a>
+
+      <a href="natureza.html" class="card-link">
+        <div class="day-card">
+          <img src="https://i.pinimg.com/originals/f4/c9/10/f4c910f510bc62e565b8bcba9f31e5c1.jpg" alt="Roteiro Natureza e Tradição">
+          <div class="day-content">
+            <h3>🌿 Roteiro Natureza</h3>
+          </div>
+        </div>
+      </a>
+
+    </div>
+
+    <section id="reserva" style="margin-top: 3rem; text-align: center;">
+      <a href="https://serraexplore.com/reservas" style="padding: 1rem 2rem; background-color: #2b3a42; color: #fff; text-decoration: none; border-radius: 8px; font-size: 1.2rem;">Faça sua reserva agora</a>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 SerraExplore. Todos os direitos reservados.</p>
+  </footer>
+
+</body>
+</html>
