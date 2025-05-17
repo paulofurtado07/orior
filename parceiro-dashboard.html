@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Área do Parceiro - SerraExplore</title>
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Raleway', sans-serif; }
+    body { background-color: #f6f6f6; color: #333; }
+    header { background-color: #1e3a3a; color: white; padding: 1rem 2rem; text-align: center; }
+    h2 { text-align: center; margin-top: 2rem; color: #1e3a3a; }
+    form { max-width: 600px; margin: 2rem auto; background: #fff; padding: 2rem; border-radius: 10px; box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1); }
+    form label { display: block; margin-bottom: 0.5rem; color: #333; }
+    form input, form textarea, form select {
+      width: 100%; padding: 0.8rem; margin-bottom: 1.5rem;
+      border: 1px solid #ccc; border-radius: 6px;
+    }
+    button {
+      width: 100%; padding: 0.8rem;
+      background-color: #1e3a3a; color: #fff;
+      border: none; border-radius: 6px;
+      font-size: 1rem; cursor: pointer;
+    }
+    #mensagem { text-align: center; margin-top: 1rem; }
+    footer { background-color: #1e3a3a; color: white; text-align: center; padding: 1rem; margin-top: 3rem; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Área do Parceiro - SerraExplore</h1>
+  </header>
+
+  <h2>Cadastre sua Empresa</h2>
+
+  <form id="formEmpresa">
+    <label for="empresa">Nome da Empresa:</label>
+    <input type="text" id="empresa" required />
+
+    <label for="cnpj">CNPJ:</label>
+    <input type="text" id="cnpj" placeholder="XX.XXX.XXX/0001-XX" required />
+
+    <label for="tipo">Tipo de Serviço:</label>
+    <select id="tipo" required>
+      <option value="">Selecione</option>
+      <option value="restaurante">Restaurante</option>
+      <option value="vinícola">Vinícola</option>
+      <option value="pousada">Pousada</option>
+      <option value="turismo">Turismo/Experiência</option>
+      <option value="outro">Outro</option>
+    </select>
+
+    <label for="descricao">Descrição da Empresa:</label>
+    <textarea id="descricao" rows="4" required></textarea>
+
+    <label for="telefone">Telefone:</label>
+    <input type="tel" id="telefone" placeholder="(XX) XXXXX-XXXX" required />
+
+    <label for="emailEmpresa">E-mail comercial:</label>
+    <input type="email" id="emailEmpresa" required />
+
+    <button type="submit">Cadastrar Empresa</button>
+    <p id="mensagem"></p>
+  </form>
+
+  <footer>
+    <p>&copy; 2025 SerraExplore. Todos os direitos reservados.</p>
+  </footer>
+
+  <script>
+    const form = document.getElementById('formEmpresa');
+    const mensagem = document.getElementById('mensagem');
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      const dados = {
+        empresa: document.getElementById('empresa').value.trim(),
+        cnpj: document.getElementById('cnpj').value.trim(),
+        tipo: document.getElementById('tipo').value,
+        descricao: document.getElementById('descricao').value.trim(),
+        telefone: document.getElementById('telefone').value.trim(),
+        emailEmpresa: document.getElementById('emailEmpresa').value.trim()
+      };
+
+      if (Object.values(dados).some(val => val === '')) {
+        mensagem.textContent = 'Preencha todos os campos.';
+        mensagem.style.color = 'red';
+        return;
+      }
+
+      fetch('http://localhost:3000/api/empresas', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(dados)
+      })
+      .then(res => res.json())
+      .then(data => {
+        if (data.erro) {
+          mensagem.textContent = data.erro;
+          mensagem.style.color = 'orange';
+        } else {
+          mensagem.textContent = 'Empresa cadastrada com sucesso!';
+          mensagem.style.color = 'green';
+          form.reset();
+        }
+      })
+      .catch(err => {
+        mensagem.textContent = 'Erro ao cadastrar: ' + err.message;
+        mensagem.style.color = 'red';
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cadastro - SerraExplore</title>
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Raleway', sans-serif; }
+    body { background-color: #f6f6f6; color: #333; }
+    header { background-color: #1e3a3a; color: white; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; }
+    header h1 { font-size: 1.8rem; }
+    nav a { color: white; margin-left: 1rem; text-decoration: none; }
+    main { padding: 4rem 2rem; }
+    h2 { text-align: center; color: #1e3a3a; margin-bottom: 2rem; }
+    form { max-width: 500px; margin: 0 auto; background: #fff; padding: 2rem; border-radius: 10px; box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1); }
+    form label { display: block; margin-bottom: 0.5rem; color: #333; }
+    form input, form select { width: 100%; padding: 0.8rem; margin-bottom: 1.5rem; border: 1px solid #ccc; border-radius: 6px; }
+    button { width: 100%; padding: 0.8rem; background-color: #1e3a3a; color: #fff; border: none; border-radius: 6px; font-size: 1rem; cursor: pointer; }
+    #mensagem { margin-top: 1rem; text-align: center; }
+    footer { background-color: #1e3a3a; color: white; text-align: center; padding: 1rem; margin-top: 3rem; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>SerraExplore</h1>
+    <nav>
+      <a href="index.html">Início</a>
+      <a href="roteiros.html">Roteiros</a>
+      <a href="cadastro.html">Parceiros</a>
+      <a href="contato.html">Contato</a>
+    </nav>
+  </header>
+
+  <main>
+    <h2>Cadastro de Usuário</h2>
+    <form id="formCadastro">
+      <label for="nome">Nome:</label>
+      <input type="text" id="nome" name="nome" required />
+
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required />
+
+      <label for="senha">Senha:</label>
+      <input type="password" id="senha" name="senha" required />
+
+      <label for="tipo">Tipo de usuário:</label>
+      <select id="tipo" name="tipo" required>
+        <option value="">Selecione</option>
+        <option value="turista">Turista</option>
+        <option value="parceiro">Parceiro</option>
+      </select>
+
+      <button type="submit">Cadastrar</button>
+      <p id="mensagem"></p>
+    </form>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 SerraExplore. Todos os direitos reservados.</p>
+  </footer>
+
+  <script>
+    const form = document.getElementById('formCadastro');
+    const mensagem = document.getElementById('mensagem');
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const nome = document.getElementById('nome').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const senha = document.getElementById('senha').value;
+      const tipo = document.getElementById('tipo').value;
+
+      if (!nome || !email || !senha || !tipo) {
+        mensagem.textContent = 'Preencha todos os campos.';
+        mensagem.style.color = 'red';
+        return;
+      }
+
+      fetch('http://localhost:3000/api/usuarios', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ nome, email, senha, tipo })
+      })
+      .then(res => res.json())
+      .then(data => {
+        if (data.erro) {
+          mensagem.textContent = data.erro;
+          mensagem.style.color = 'orange';
+        } else {
+          if (tipo === 'turista') {
+            window.location.href = 'roteiros.html';
+          } else {
+            window.location.href = 'parceiro-dashboard.html';
+          }
+        }
+      })
+      .catch(err => {
+        mensagem.textContent = 'Erro ao cadastrar: ' + err.message;
+        mensagem.style.color = 'red';
+      });
+    });
+  </script>
+</body>
+</html>
